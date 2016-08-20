@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl, FormGroup } from '@angular/forms';
 
+import { bounce, fade } from '../../../src';
 
 @Component({
     selector: 'app',
-    template: require('./app.html')
+    template: require('./app.html'),
+    styles: [
+        `.app{
+          opacity: 0;
+        }`
+    ],
+    animations: [bounce, fade]
 })
 export class AppComponent implements OnInit {
-    form: FormGroup;
+    state: string = '';
 
     constructor() {
     }
@@ -15,8 +21,11 @@ export class AppComponent implements OnInit {
     ngOnInit() {
     }
 
-    onSubmit() {
-        console.log(this.form);
+    onClickIn() {
+        this.state = 'in';
     }
 
+    onClickOut() {
+        this.state = 'out';
+    }
 }
