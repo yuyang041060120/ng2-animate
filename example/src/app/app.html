@@ -1,12 +1,27 @@
-<p [@fade]="state"></p>
-<button (click)="state = 'in'">in</button>
-<button (click)="state = 'inDown'">inDown</button>
-<button (click)="state = 'inLeft'">inLeft</button>
-<button (click)="state = 'inRight'">inRight</button>
-<button (click)="state = 'inUp'">inUp</button>
-
-<button (click)="state = 'out'">out</button>
-<button (click)="state = 'outDown'">outDown</button>
-<button (click)="state = 'outLeft'">outLeft</button>
-<button (click)="state = 'outRight'">outRight</button>
-<button (click)="state = 'outUp'">outUp</button>
+<div class="container" style="width: 500px;">
+  <h3>Animation States</h3>
+  <div class="input-group">
+    <select class="form-control" [(ngModel)]="trigger" name="trigger" style="width: 170px;">
+      <option value="fade">fade</option>
+      <option value="bounce">bounce</option>
+    </select>
+    <button *ngFor="let item of states" class="btn btn-default" [class.btn-primary]="state === item"
+            (click)="setState(item)">{{item}}
+    </button>
+  </div>
+  <form (submit)="onSubmit($event)" style="margin-top: 30px;">
+    <input type="text" [(ngModel)]="q" name="q" class="form-control" placeholder="add a new user" autocomplete="off">
+  </form>
+  <ul class="list-group" *ngIf="trigger === 'fade'">
+    <li class="list-group-item" *ngFor="let item of list;let i = index" [@fade]="item.state || state">
+      {{item.title}}
+      <span (click)="onRemoveItem(i)" class="badge" style="cursor: pointer;">X</span>
+    </li>
+  </ul>
+  <ul class="list-group" *ngIf="trigger === 'bounce'">
+    <li class="list-group-item" *ngFor="let item of list;let i = index" [@bounce]="item.state || state">
+      {{item.title}}
+      <span (click)="onRemoveItem(i)" class="badge" style="cursor: pointer;">X</span>
+    </li>
+  </ul>
+</div>
