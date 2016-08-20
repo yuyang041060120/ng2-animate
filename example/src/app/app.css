@@ -1,0 +1,51 @@
+.container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wrap{
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  color: #f35626;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 60s infinite linear;
+  font-size: 40px;
+  font-weight: 100;
+}
+
+select{
+  background-color: transparent;
+  border: 1px solid #c0c8c9;
+  border-radius: 2px;
+}
+
+a {
+  margin-top: 30px;
+  color: #7b8993;
+  text-decoration: underline;
+  -webkit-animation: hue 60s infinite linear;
+  background-color: white;
+}
+
+a:hover {
+  color: #f35626;
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}

@@ -1,65 +1,63 @@
-import { trigger, style, transition, animate, keyframes, AnimationEntryMetadata } from '@angular/core';
+import { style, transition, animate, keyframes, AnimationStateTransitionMetadata } from '@angular/core';
 
-import { duration } from '../config';
-
-export const fade: AnimationEntryMetadata = trigger('fade', [
-    transition('void => in', [
-        animate(duration, keyframes([
+export const fade = (timing: string): AnimationStateTransitionMetadata[] => [
+    transition('* => fadeIn', [
+        animate(timing, keyframes([
             style({opacity: 0, offset: 0}),
             style({opacity: 1, offset: 1})
         ]))
     ]),
-    transition('in => void', [
-        animate(duration, style({
+    transition('fadeIn => void', [
+        animate(timing, style({
             opacity: 0
         }))
     ]),
-    transition('void => inDown', [
-        animate(duration, keyframes([
-            style({opacity: 0, transform: 'translate3d(0, 100%, 0)', offset: 0}),
-            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
-        ]))
-    ]),
-    transition('inDown => void', [
-        animate(duration, style({
-            opacity: 0,
-            transform: 'translate3d(0, -100%, 0)'
-        }))
-    ]),
-    transition('void => inLeft', [
-        animate(duration, keyframes([
-            style({opacity: 0, transform: 'translate3d(-100%, 0, 0)', offset: 0}),
-            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
-        ]))
-    ]),
-    transition('inLeft => void', [
-        animate(duration, style({
-            opacity: 0,
-            transform: 'translate3d(100%, 0, 0)'
-        }))
-    ]),
-    transition('void => inRight', [
-        animate(duration, keyframes([
-            style({opacity: 0, transform: 'translate3d(100%, 0, 0)', offset: 0}),
-            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
-        ]))
-    ]),
-    transition('inRight => void', [
-        animate(duration, style({
-            opacity: 0,
-            transform: 'translate3d(-100%, 0, 0)'
-        }))
-    ]),
-    transition('void => inUp', [
-        animate(duration, keyframes([
+    transition('* => fadeInDown', [
+        animate(timing, keyframes([
             style({opacity: 0, transform: 'translate3d(0, -100%, 0)', offset: 0}),
             style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
         ]))
     ]),
-    transition('inUp => void', [
-        animate(duration, style({
+    transition('fadeInDown => void', [
+        animate(timing, style({
             opacity: 0,
             transform: 'translate3d(0, 100%, 0)'
         }))
     ]),
-]);
+    transition('* => fadeInLeft', [
+        animate(timing, keyframes([
+            style({opacity: 0, transform: 'translate3d(-100%, 0, 0)', offset: 0}),
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
+        ]))
+    ]),
+    transition('fadeInLeft => void', [
+        animate(timing, style({
+            opacity: 0,
+            transform: 'translate3d(100%, 0, 0)'
+        }))
+    ]),
+    transition('* => fadeInRight', [
+        animate(timing, keyframes([
+            style({opacity: 0, transform: 'translate3d(100%, 0, 0)', offset: 0}),
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
+        ]))
+    ]),
+    transition('fadeInRight => void', [
+        animate(timing, style({
+            opacity: 0,
+            transform: 'translate3d(-100%, 0, 0)'
+        }))
+    ]),
+    transition('* => fadeInUp', [
+        animate(timing, keyframes([
+            style({opacity: 0, transform: 'translate3d(0, 100%, 0)', offset: 0}),
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1})
+        ]))
+    ]),
+    transition('fadeInUp => void', [
+        animate(timing, style({
+            opacity: 0,
+            transform: 'translate3d(0, -100%, 0)'
+        }))
+    ])
+];

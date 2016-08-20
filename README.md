@@ -8,70 +8,57 @@ Angular2 animations, inspired by [Animate.css](https://daneden.github.io/animate
 npm install ng2-animate --save
 ```
 
-# Demo
-
-https://yuyang041060120.github.io/ng2-animate
-
 # Usage
 
 ```javascript
-import { fade } from 'ng2-animate';
+import { animateFactory } from 'ng2-animate';
 
 @Component({
     selector: 'app',
     template: require('./app.html'),
-    animations: [fade]
+    animations: [animateFactory(1000, 200, 'ease-in')]
 })
-export class AppComponent implements OnInit {
-    list: any[] = [
-        {title: 'Jacky'},
-        {title: 'Helen'}
-    ];
-
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
-    onAdd() {
-        this.list.push({
-            title: 'xxx',
-            state: 'inLeft'
-        });
-    }
-
-    onRemove(i) {
-        this.list.splice(i, 1);
-    }
-}
+export class AppComponent{}
 ```
 
 ```html
-<button (click)="onAdd()">add</button>
-<ul>
-  <li *ngFor="let item of list;let i = index" [@fade]="item.state || 'inLeft'">
-    {{item.title}}
-    <span (click)="onRemove(i)" class="badge">X</span>
-  </li>
-</ul>
+<p [@animate]="'fadeIn'">fadeIn</p>
+<p [@animate]="'fadeInDown'">fadeInDown</p>
+<p [@animate]="'fadeInLeft'">fadeInLeft</p>
+<p [@animate]="'fadeInRight'">fadeInRight</p>
+<p [@animate]="'fadeInnUp'">fadeInnUp</p>
 ```
 
-### other examples
+# params
 
-```html
-<p [@fade]="'in'">in</p>
-<p [@fade]="'inDown'">inDown</p>
-<p [@fade]="'inLeft'">inLeft</p>
-<p [@fade]="'inRight'">inRight</p>
-<p [@fade]="'inUp'">inUp</p>
-
+```javascript
+animateFactory(1000, 200, 'ease-in')
 ```
 
-# Animations
+### duration
 
-- fade(in|inDown|inLeft|inRight|inUp)
-- bounce(in|inDown|inLeft|inRight|inUp)
+the duration of the animation
+
+- type: string | number
+- optional, default value is `500ms`
+
+### delay
+
+the delay of the animation
+
+- type: string | number
+- optional, default value is `0`
+
+### easing
+
+the easing function of the animation
+
+- type: string
+- optional, default value is `linear`
+
+# Support Animations
+
+see online demo https://yuyang041060120.github.io/ng2-animate
 
 # License
 
