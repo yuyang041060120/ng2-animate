@@ -1,3 +1,12 @@
-<span [@fade]="state">app</span>
-<button (click)="onClickIn()">in</button>
-<button (click)="onClickOut()">out</button>
+<p [@fade]="state"></p>
+<button (click)="state = 'in'">in</button>
+<button (click)="state = 'inDown'">inDown</button>
+<button (click)="state = 'inLeft'">inLeft</button>
+<button (click)="state = 'inRight'">inRight</button>
+<button (click)="state = 'inUp'">inUp</button>
+
+<button (click)="state = 'out'">out</button>
+<button (click)="state = 'outDown'">outDown</button>
+<button (click)="state = 'outLeft'">outLeft</button>
+<button (click)="state = 'outRight'">outRight</button>
+<button (click)="state = 'outUp'">outUp</button>

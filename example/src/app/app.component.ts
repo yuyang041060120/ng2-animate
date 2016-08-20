@@ -6,8 +6,10 @@ import { bounce, fade } from '../../../src';
     selector: 'app',
     template: require('./app.html'),
     styles: [
-        `.app{
-          opacity: 0;
+        `p{
+          width: 200px;
+          height: 30px;
+          background-color: red;
         }`
     ],
     animations: [bounce, fade]

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "karma start ./karma.conf.js",
     "dev": "webpack-dev-server --inline --progress --profile --colors --watch --display-error-details --display-cached --content-base",
-    "example": "webpack --inline --progress --profile --colors --watch --display-error-details --display-cached --content-base",
+    "example": "webpack --inline --progress --profile --colors --display-error-details --display-cached --content-base",
     "tsc": "tsc --rootDir src --outDir dist --declaration",
     "prebuild": "rimraf dist",
     "build": "npm run tsc",
