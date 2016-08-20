@@ -1,8 +1,8 @@
-import { trigger, style, transition, animate, keyframes } from '@angular/core';
+import { trigger, style, transition, animate, keyframes, AnimationEntryMetadata } from '@angular/core';
 
 import { duration } from '../config';
 
-export const bounce = trigger('bounce', [
+export const bounce: AnimationEntryMetadata = trigger('bounce', [
     transition('void => in', [
         animate(duration, keyframes([
             style({opacity: 0, transform: 'scale3d(.3, .3, .3)', offset: 0}),

@@ -1,8 +1,8 @@
-import { trigger, style, transition, animate, keyframes } from '@angular/core';
+import { trigger, style, transition, animate, keyframes, AnimationEntryMetadata } from '@angular/core';
 
 import { duration } from '../config';
 
-export const fade = trigger('fade', [
+export const fade: AnimationEntryMetadata = trigger('fade', [
     transition('void => in', [
         animate(duration, keyframes([
             style({opacity: 0, offset: 0}),
