@@ -29,7 +29,7 @@ export class AppComponent{}
 <p [@animate]="'fadeInnUp'">fadeInnUp</p>
 ```
 
-# params
+# Params
 
 ```javascript
 animateFactory(1000, 200, 'ease-in')
