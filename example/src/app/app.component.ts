@@ -30,7 +30,6 @@ export class AppComponent {
         'rotateInUpLeft',
         'rotateInUpRight',
 
-        'slideIn',
         'slideInDown',
         'slideInLeft',
         'slideInRight',

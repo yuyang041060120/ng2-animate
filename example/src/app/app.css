@@ -36,6 +36,22 @@ h2 {
   background-color: #339966;
 }
 
+p {
+  text-align: center;
+}
+
+a {
+  margin-top: 30px;
+  color: #7b8993;
+  text-decoration: underline;
+  -webkit-animation: hue 60s infinite linear;
+  background-color: white;
+}
+
+a:hover {
+  color: #f35626;
+}
+
 @-webkit-keyframes hue {
   from {
     -webkit-filter: hue-rotate(0deg);
