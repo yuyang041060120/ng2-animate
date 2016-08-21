@@ -18,15 +18,30 @@ import { animateFactory } from 'ng2-animate';
     template: require('./app.html'),
     animations: [animateFactory(1000, 200, 'ease-in')]
 })
-export class AppComponent{}
+export class AppComponent{
+    show: boolean = true;
+    list: string[] = ['xxx', 'yyy'];
+    onAdd() {
+        this.list.push('zzz');
+    }
+    onRemove(i) {
+        this.list.splice(i, 1);
+    }
+}
 ```
 
 ```html
-<p [@animate]="'fadeIn'">fadeIn</p>
-<p [@animate]="'fadeInDown'">fadeInDown</p>
-<p [@animate]="'fadeInLeft'">fadeInLeft</p>
-<p [@animate]="'fadeInRight'">fadeInRight</p>
-<p [@animate]="'fadeInnUp'">fadeInnUp</p>
+<p [@animate]="'fadeIn'" *ngIf="show">fadeIn</p>
+<button (click)="show = !show">toggle</button>
+
+
+<button (click)="onAdd()">add</button>
+<ul>
+    <li *ngFor="let item of list;let i = index;" [@animate]="'fadeInLeft'">
+        {{item}}
+        <button (click)="onRemove(i)">X</button>
+    </li>
+</ul>
 ```
 
 # Params
