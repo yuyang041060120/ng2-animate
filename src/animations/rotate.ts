@@ -7,7 +7,7 @@ export const rotate = (timing: string): AnimationStateTransitionMetadata[] => [
             style({opacity: 1, transformOrigin: 'center', transform: 'rotate3d(0, 0, 1, 0deg)', offset: 1})
         ]))
     ]),
-    transition('rotateIn => void, * => rotateOut', [
+    transition('rotateIn => void', [
         animate(timing, keyframes([
             style({opacity: 1, transformOrigin: 'center', transform: 'rotate3d(0, 0, 1, 0deg)', offset: 0}),
             style({opacity: 0, transformOrigin: 'center', transform: 'rotate3d(0, 0, 1, 200deg)', offset: 1})

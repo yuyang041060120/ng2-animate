@@ -8,9 +8,10 @@ export const fade = (timing: string): AnimationStateTransitionMetadata[] => [
         ]))
     ]),
     transition('fadeIn => void', [
-        animate(timing, style({
-            opacity: 0
-        }))
+        animate(timing, keyframes([
+            style({opacity: 1, offset: 0}),
+            style({opacity: 0, offset: 1})
+        ]))
     ]),
     transition('* => fadeInDown', [
         animate(timing, keyframes([
@@ -19,10 +20,10 @@ export const fade = (timing: string): AnimationStateTransitionMetadata[] => [
         ]))
     ]),
     transition('fadeInDown => void', [
-        animate(timing, style({
-            opacity: 0,
-            transform: 'translate3d(0, 100%, 0)'
-        }))
+        animate(timing, keyframes([
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 0}),
+            style({opacity: 0, transform: 'translate3d(0, 100%, 0)', offset: 1})
+        ]))
     ]),
     transition('* => fadeInLeft', [
         animate(timing, keyframes([
@@ -31,10 +32,10 @@ export const fade = (timing: string): AnimationStateTransitionMetadata[] => [
         ]))
     ]),
     transition('fadeInLeft => void', [
-        animate(timing, style({
-            opacity: 0,
-            transform: 'translate3d(100%, 0, 0)'
-        }))
+        animate(timing, keyframes([
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 0}),
+            style({opacity: 0, transform: 'translate3d(100%, 0, 0)', offset: 1})
+        ]))
     ]),
     transition('* => fadeInRight', [
         animate(timing, keyframes([
@@ -43,10 +44,10 @@ export const fade = (timing: string): AnimationStateTransitionMetadata[] => [
         ]))
     ]),
     transition('fadeInRight => void', [
-        animate(timing, style({
-            opacity: 0,
-            transform: 'translate3d(-100%, 0, 0)'
-        }))
+        animate(timing, keyframes([
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 0}),
+            style({opacity: 0, transform: 'translate3d(-100%, 0, 0)', offset: 1})
+        ]))
     ]),
     transition('* => fadeInUp', [
         animate(timing, keyframes([
@@ -55,9 +56,9 @@ export const fade = (timing: string): AnimationStateTransitionMetadata[] => [
         ]))
     ]),
     transition('fadeInUp => void', [
-        animate(timing, style({
-            opacity: 0,
-            transform: 'translate3d(0, -100%, 0)'
-        }))
+        animate(timing, keyframes([
+            style({opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 0}),
+            style({opacity: 0, transform: 'translate3d(0, -100%, 0)', offset: 1})
+        ]))
     ])
 ];
