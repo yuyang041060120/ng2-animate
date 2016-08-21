@@ -33,7 +33,13 @@ export class AppComponent {
         'slideInDown',
         'slideInLeft',
         'slideInRight',
-        'slideInUp'
+        'slideInUp',
+
+        'zoomIn',
+        'zoomInDown',
+        'zoomInLeft',
+        'zoomInRight',
+        'zoomInUp',
     ];
 
     constructor() {
