@@ -75,6 +75,8 @@ the easing function of the animation
 
 see online demo https://yuyang041060120.github.io/ng2-animate
 
+> click the top title and every element.
+
 # License
 
 MIT
