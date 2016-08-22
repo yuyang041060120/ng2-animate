@@ -1,13 +1,23 @@
 <div class="container">
-  <h2 (click)="onToggle()">Ng2 Animate</h2>
-  <div class="wrap">
-    <div class="demo-wrap" *ngFor="let item of animations" (click)="item.show = !item.show">
-      <div class="demo-item" *ngIf="item.show" [@animate]="item.key" [ngStyle]="{'background-color': '#' + item.bg}">
-        {{item.key}}
-      </div>
+    <h2 (click)="onToggleInAll()">Entering and Leaving</h2>
+    <div class="wrap">
+        <div class="demo-wrap" *ngFor="let item of inAnimations" (click)="item.show = !item.show">
+            <div class="demo-item" *ngIf="item.show" [@animate]="item.key" [ngStyle]="{'background-color': '#' + item.bg}">
+                {{item.key}}
+            </div>
+        </div>
     </div>
-  </div>
-  <p>
-    <a href="https://github.com/yuyang041060120/ng2-animate">View on GitHub</a>
-  </p>
+    <h2 (click)="onToggleOutAll()">Replace With [hidden]</h2>
+    <div class="wrap">
+        <div class="demo-wrap" *ngFor="let item of outAnimations" (click)="onToggleOutItem(item)">
+            <div class="demo-item" [@animate]="item.state" [ngStyle]="{'background-color': '#' + item.bg}">
+                {{item.key}}
+            </div>
+        </div>
+    </div>
+
+    <p>
+        <a href="https://github.com/yuyang041060120/ng2-animate">View on GitHub</a>
+    </p>
+
 </div>

@@ -10,6 +10,8 @@ npm install ng2-animate --save
 
 # Usage
 
+## Entering and Leaving
+
 ```javascript
 import { animateFactory } from 'ng2-animate';
 
@@ -42,6 +44,13 @@ export class AppComponent{
         <button (click)="onRemove(i)">X</button>
     </li>
 </ul>
+```
+
+## Replace With [hidden]
+
+```html
+<p [@animate]="state">Hello World</p>
+<button (click)="state = 'fadeOutDown'">hide</button>
 ```
 
 # Params

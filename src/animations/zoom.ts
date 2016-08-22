@@ -1,13 +1,35 @@
-import { style, transition, animate, keyframes, AnimationStateTransitionMetadata } from '@angular/core';
+import {
+    style,
+    state,
+    transition,
+    animate,
+    keyframes,
+    AnimationMetadata
+} from '@angular/core';
 
-export const zoom = (timing: string): AnimationStateTransitionMetadata[] => [
+export const zoom = (timing: string): AnimationMetadata[] => [
+    state('zoomOut', style({
+        display: 'none'
+    })),
+    state('zoomOutDown', style({
+        display: 'none'
+    })),
+    state('zoomOutLeft', style({
+        display: 'none'
+    })),
+    state('zoomOutRight', style({
+        display: 'none'
+    })),
+    state('zoomOutUp', style({
+        display: 'none'
+    })),
     transition('* => zoomIn', [
         animate(timing, keyframes([
             style({opacity: 0, transform: 'scale3d(.1, .1, .1)', offset: 0}),
             style({opacity: 1, transform: 'scale3d(1, 1, 1)', offset: 1})
         ]))
     ]),
-    transition('zoomIn => void', [
+    transition('zoomIn => void, * => zoomOut', [
         animate(timing, keyframes([
             style({opacity: 1, transform: 'scale3d(1, 1, 1)', offset: 0}),
             style({opacity: 0, transform: 'scale3d(.1, .1, .1)', offset: 1})
@@ -20,7 +42,7 @@ export const zoom = (timing: string): AnimationStateTransitionMetadata[] => [
             style({transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 1})
         ]))
     ]),
-    transition('zoomInDown => void', [
+    transition('zoomInDown => void, * => zoomOutDown', [
         animate(timing, keyframes([
             style({opacity: 1, transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 0}),
             style({transform: 'scale3d(.475, .475, .475) translate3d(0, 60px, 0)', offset: 0.4}),
@@ -34,7 +56,7 @@ export const zoom = (timing: string): AnimationStateTransitionMetadata[] => [
             style({transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 1})
         ]))
     ]),
-    transition('zoomInLeft => void', [
+    transition('zoomInLeft => void, * => zoomOutRight', [
         animate(timing, keyframes([
             style({opacity: 1, transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 0}),
             style({transform: 'scale3d(.475, .475, .475) translate3d(-10px, 0, 0)', offset: 0.6}),
@@ -48,7 +70,7 @@ export const zoom = (timing: string): AnimationStateTransitionMetadata[] => [
             style({transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 1})
         ]))
     ]),
-    transition('zoomInRight => void', [
+    transition('zoomInRight => void, * => zoomOutLeft', [
         animate(timing, keyframes([
             style({opacity: 1, transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 0}),
             style({transform: 'scale3d(.475, .475, .475) translate3d(10px, 0, 0)', offset: 0.6}),
@@ -62,7 +84,7 @@ export const zoom = (timing: string): AnimationStateTransitionMetadata[] => [
             style({transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 1})
         ]))
     ]),
-    transition('zoomInUp => void', [
+    transition('zoomInUp => void, * => zoomOutUp', [
         animate(timing, keyframes([
             style({opacity: 1, transform: 'scale3d(1, 1, 1) translate3d(0, 0, 0)', offset: 0}),
             style({transform: 'scale3d(.475, .475, .475) translate3d(0, -60px, 0)', offset: 0.4}),
