@@ -35,7 +35,7 @@ import { animateConfig, animateDefaults, animateFactory } from 'ng2-animate';
 # Examples
 
 ## ngFor
-Items will have animation as the come in and leave
+Items will have animation as they come in and when they leave
 
 app.js
 ```javascript
