@@ -4,13 +4,16 @@ Angular2 animations, inspired by [Animate.css](https://daneden.github.io/animate
 
 ### Table of Contents
 - [Install](#install)
-- [Usage](#usage)
+- [Examples](#examples)
+  - [ngFor](#ngfor)
+  - [whileStyle Example](#whilestyle-example)
 - [Params](#params)
   - [duration](#duration)
   - [delay](#delay)
   - [easing](#easing)
   - [stagger](#stagger)
   - [name](#name)
+  - [whileStyle](#whilestyle)
 - [Customize Defaults](#customize-defaults)
 - [API](#api)
   - [animateFactory](#animatefactory)
@@ -24,12 +27,19 @@ Angular2 animations, inspired by [Animate.css](https://daneden.github.io/animate
 npm install ng2-animate --save-dev
 ```
 
-# Usage
+Include in Project
+```
+import { animateConfig, animateDefaults, animateFactory } from 'ng2-animate';
+```
 
-## Entering and Leaving
+# Examples
 
+## ngFor
+Items will have animation as the come in and leave
+
+app.js
 ```javascript
-import { animateFactory } from 'ng2-animate';
+import { animateConfig, animateFactory } from 'ng2-animate';
 
 @Component({
     selector: 'app',
@@ -51,6 +61,7 @@ export class AppComponent{
 }
 ```
 
+app.html
 ```html
 <p [@animate]="'fadeIn'" *ngIf="show">fadeIn</p>
 <p [@animateFast]="'fadeIn'" *ngIf="show">fadeIn fast</p>
@@ -59,10 +70,10 @@ export class AppComponent{
 
 <button (click)="onAdd()">add</button>
 <ul>
-    <li *ngFor="let item of list;let i = index;" [@animate]="'fadeInLeft'">
-        {{item}}
-        <button (click)="onRemove(i)">X</button>
-    </li>
+  <li *ngFor="let item of list;let i = index;" [@animate]="'fadeInLeft'">
+    {{item}}
+    <button (click)="onRemove(i)">X</button>
+  </li>
 </ul>
 ```
 
@@ -73,11 +84,55 @@ export class AppComponent{
 <button (click)="state = 'fadeOutDown'">hide</button>
 ```
 
-# Params
+## whileStyle Example
+Lets always animate block elements with an absolute position
 
+app.js
 ```javascript
-animateFactory(1000, 200, 'ease-in')
+import { animateFactory } from 'ng2-animate';
+
+@Component({
+  selector: 'app',
+  template: require('./main.html'),
+  animations: [
+    animateConfig({
+      duration:200, delay:0, easing:'linear',
+      whileStyle:{
+        width:'100%',
+        position:'absolute'
+      }
+    })
+  ]
+})
+export class AppComponent{
+  view: boolean = 'main';
+}
 ```
+
+main.html
+```html
+<a (click)="view='main'">main</a>
+<a (click)="view='about'">about</a>
+<a (click)="view='contact'">contact</a>
+<hr />
+<div style="position:relative;">
+  <div *ngIf="view=='main'" [@animate]="'fadeInLeft'">
+    <h2>Main View</h2>
+    ....
+  </div>
+  <div *ngIf="view=='about'" [@animate]="'fadeInLeft'">
+    <h2>About View</h2>
+    ....
+  </div>
+  <div *ngIf="view=='contact'" [@animate]="'fadeInLeft'">
+    <h2>Contact View</h2>
+    ....
+  </div>
+</div>
+```
+
+# Params
+The configuration options available to define
 
 ### duration
 the duration of the animation
@@ -111,6 +166,12 @@ the animation trigger/state name registered with Angular
 - type: string
 - optional, default value is `animate`
 
+### whileStyle
+A style definition that will be applied during defined animation process
+
+- type: object
+- optional
+
 # Customize Defaults
 
 ```
@@ -120,6 +181,7 @@ animateDefaults.duration = 500
 animateDefaults.delay    = 0
 animateDefaults.easing   = 'linear'
 animateDefaults.name     = 'animate'
+animateDefaults.whileStyle.position = 'absolute'
 ```
 
 # API
