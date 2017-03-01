@@ -5,6 +5,7 @@ export declare const animateDefaults: {
     easing: string;
     stagger: number;
     name: string;
+    igniter: string;
     whileStyle: {};
 };
 export declare const animateFactory: (duration: string | number, delay: string | number, easing: string, stagger: number, name: string) => AnimationEntryMetadata;

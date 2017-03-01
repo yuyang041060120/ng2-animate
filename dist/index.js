@@ -12,6 +12,7 @@ exports.animateDefaults = {
     easing: 'linear',
     stagger: 0,
     name: 'animate',
+    igniter: '*',
     whileStyle: {}
 };
 exports.animateFactory = function (duration, delay, easing, stagger, name) {
@@ -31,6 +32,7 @@ exports.animateConfig = function (config) {
     config.easing = config.easing = null ? exports.animateDefaults.easing : config.easing;
     config.stagger = config.stagger = null ? exports.animateDefaults.stagger : config.stagger;
     config.name = config.name == null ? exports.animateDefaults.name : config.name;
+    config.igniter = config.igniter == null ? exports.animateDefaults.igniter : config.igniter;
     config.whileStyle = config.whileStyle == null ? exports.animateDefaults.whileStyle : config.whileStyle;
     if (config.stagger) {
         console.log('ng2-animate does not support stagger as of this release');

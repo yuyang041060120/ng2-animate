@@ -9,6 +9,7 @@ import {
 
 export const slide = (timing: string, options): AnimationMetadata[] => {
   options = options || {}
+  options.igniter = options.igniter || '*'
 
   function stylize(styleDef){
     return style( Object.assign(styleDef, options.whileStyle) )
@@ -27,49 +28,49 @@ export const slide = (timing: string, options): AnimationMetadata[] => {
     state('slideOutUp', style({
       display: 'none'
     })),
-    transition('* => slideInDown', [
+    transition(`${options.igniter} => slideInDown`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(0, -100%, 0)', offset: 0}),
         stylize({transform: 'translate3d(0, 0, 0)', offset: 1})
       ]))
     ]),
-    transition('slideInDown => void, * => slideOutDown', [
+    transition(`slideInDown => void, ${options.igniter} => slideOutDown`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(0, 0, 0)', offset: 0}),
         stylize({transform: 'translate3d(0, 100%, 0)', offset: 1})
       ]))
     ]),
-    transition('* => slideInLeft', [
+    transition(`${options.igniter} => slideInLeft`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(-100%, 0, 0)', offset: 0}),
         stylize({transform: 'translate3d(0, 0, 0)', offset: 1})
       ]))
     ]),
-    transition('slideInLeft => void, * => slideOutRight', [
+    transition(`slideInLeft => void, ${options.igniter} => slideOutRight`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(0, 0, 0)', offset: 0}),
         stylize({transform: 'translate3d(100%, 0, 0)', offset: 1})
       ]))
     ]),
-    transition('* => slideInRight', [
+    transition(`${options.igniter} => slideInRight`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(100%, 0, 0)', offset: 0}),
         stylize({transform: 'translate3d(0, 0, 0)', offset: 1})
       ]))
     ]),
-    transition('slideInRight => void, * => slideOutLeft', [
+    transition(`slideInRight => void, ${options.igniter} => slideOutLeft`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(0, 0, 0)', offset: 0}),
         stylize({transform: 'translate3d(-100%, 0, 0)', offset: 1})
       ]))
     ]),
-    transition('* => slideInUp', [
+    transition(`${options.igniter} => slideInUp`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(0, 100%, 0)', offset: 0}),
         stylize({transform: 'translate3d(0, 0, 0)', offset: 1})
       ]))
     ]),
-    transition('slideInUp => void, * => slideOutUp', [
+    transition(`slideInUp => void, ${options.igniter} => slideOutUp`, [
       animate(timing, keyframes([
         stylize({transform: 'translate3d(0, 0, 0)', offset: 0}),
         stylize({transform: 'translate3d(0, -100%, 0)', offset: 1})

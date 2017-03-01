@@ -13,6 +13,7 @@ Angular2 animations, inspired by [Animate.css](https://daneden.github.io/animate
   - [easing](#easing)
   - [stagger](#stagger)
   - [name](#name)
+  - [igniter](#igniter)
   - [whileStyle](#whilestyle)
 - [Customize Defaults](#customize-defaults)
 - [API](#api)
@@ -87,6 +88,8 @@ app.html
 ## whileStyle Example
 Lets always animate block elements with an absolute position
 
+> This example also demonstrates the `igniter` option
+
 app.js
 ```javascript
 import { animateFactory } from 'ng2-animate';
@@ -101,11 +104,19 @@ import { animateFactory } from 'ng2-animate';
         width:'100%',
         position:'absolute'
       }
-    })
+    }),
+    animateConfig({igniter:'void', name:'animateNgFor'})
   ]
 })
 export class AppComponent{
   view: boolean = 'main';
+  list: string[] = ['xxx', 'yyy', 'zzz'];
+  onAdd() {
+      this.list.push('aaa');
+  }
+  onRemove(i) {
+      this.list.splice(i, 1);
+  }
 }
 ```
 
@@ -126,7 +137,14 @@ main.html
   </div>
   <div *ngIf="view=='contact'" [@animate]="'fadeInLeft'">
     <h2>Contact View</h2>
-    ....
+    <p>----- List below only animates on button actions and NOT on view=='contact' -----</p>
+    <ul>
+      <li *ngFor="let item of list;let i = index;" [@animateNgFor]="'fadeInLeft'">
+        {{item}}
+        <button (click)="onRemove(i)">X</button>
+      </li>
+    </ul>
+    <p>Without the igniter option, the ngFor would animate even during view=='contact' stage transition</p>
   </div>
 </div>
 ```
@@ -166,6 +184,15 @@ the animation trigger/state name registered with Angular
 - type: string
 - optional, default value is `animate`
 
+
+### igniter
+The state selector that triggers animation
+
+- type: string
+- optional, default value is `*` which means any state change triggers animation
+
+> TIP: igniter option is most often used as `void`, which makes animation only trigger when something like `*ngIf` brings an element out of a void state
+
 ### whileStyle
 A style definition that will be applied during defined animation process
 
@@ -181,6 +208,7 @@ animateDefaults.duration = 500
 animateDefaults.delay    = 0
 animateDefaults.easing   = 'linear'
 animateDefaults.name     = 'animate'
+animateDefaults.igniter  = '*'
 animateDefaults.whileStyle.position = 'absolute'
 ```
 

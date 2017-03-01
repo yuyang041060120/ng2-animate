@@ -12,6 +12,7 @@ export const animateDefaults = {
   easing     : 'linear',
   stagger    : 0,
   name       : 'animate',
+  igniter    : '*',
   whileStyle : {}
 }
 
@@ -33,6 +34,7 @@ export const animateConfig = (config) => {
   config.easing = config.easing=null ? animateDefaults.easing : config.easing
   config.stagger = config.stagger=null ? animateDefaults.stagger : config.stagger
   config.name = config.name==null ? animateDefaults.name : config.name
+  config.igniter = config.igniter==null ? animateDefaults.igniter : config.igniter
   config.whileStyle = config.whileStyle==null ? animateDefaults.whileStyle : config.whileStyle
 
   if(config.stagger){
