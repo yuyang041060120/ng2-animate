@@ -6,19 +6,52 @@ import { rotate } from './animations/rotate';
 import { slide } from './animations/slide';
 import { zoom } from './animations/zoom';
 
-export const animateFactory = (duration: string|number = 500, delay: string|number = 0, easing: string = 'linear'): AnimationEntryMetadata => {
+export const animateDefaults = {
+  duration   : 500,
+  delay      : 0,
+  easing     : 'linear',
+  stagger    : 0,
+  name       : 'animate',
+  igniter    : '*',
+  whileStyle : {}
+}
 
-    let timing: string = [
-        typeof(duration) === 'number' ? `${duration}ms` : duration,
-        typeof(delay) === 'number' ? `${delay}ms` : delay,
-        easing
-    ].join(' ');
+export const animateFactory = (duration: string|number, delay: string|number, easing: string, stagger: number, name: string) => {
+   const config = {
+    duration:duration, 
+    delay:delay, 
+    easing:easing, 
+    stagger:stagger, 
+    name:name
+   }
+   return animateConfig(config);
+};
 
-    return trigger('animate', [
-        ...fade(timing),
-        ...bounce(timing),
-        ...rotate(timing),
-        ...slide(timing),
-        ...zoom(timing)
-    ]);
+export const animateConfig = (config) => {
+  config = config || {}
+  config.duration = config.duration==null ? animateDefaults.duration : config.duration
+  config.delay = config.delay==null ? animateDefaults.delay : config.delay
+  config.easing = config.easing=null ? animateDefaults.easing : config.easing
+  config.stagger = config.stagger=null ? animateDefaults.stagger : config.stagger
+  config.name = config.name==null ? animateDefaults.name : config.name
+  config.igniter = config.igniter==null ? animateDefaults.igniter : config.igniter
+  config.whileStyle = config.whileStyle==null ? animateDefaults.whileStyle : config.whileStyle
+
+  if(config.stagger){
+    console.log('ng2-animate does not support stagger as of this release')
+  }
+
+  let timing: string = [
+    typeof(config.duration) === 'number' ? `${config.duration}ms` : config.duration,
+    typeof(config.delay) === 'number' ? `${config.delay}ms` : config.delay,
+    config.easing
+  ].join(' ');
+
+  return trigger(config.name, [
+    ...fade(timing, config),
+    ...bounce(timing, config),
+    ...rotate(timing, config),
+    ...slide(timing, config),
+    ...zoom(timing, config)
+  ]);
 };
